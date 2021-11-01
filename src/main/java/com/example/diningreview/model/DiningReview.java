@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class DiningReview {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "REVIEWED_BY")
     private String reviewedBy;
@@ -29,6 +29,6 @@ public class DiningReview {
     private String commentary;
     @Column(name = "REVIEW_STATUS")
     @Enumerated(EnumType.STRING)
-    private AdminReviewStatus status;
+    private AdminReviewStatus adminReviewStatus;
 
 }

@@ -1,7 +1,7 @@
 package com.example.diningreview.model;
 
 public enum AdminReviewStatus {
-    SUBMITTED,
+    PENDING,
     APPROVED,
     REJECTED
 }
