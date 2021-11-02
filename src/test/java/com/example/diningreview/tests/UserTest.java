@@ -1,38 +1,15 @@
 package com.example.diningreview.tests;
 
 import com.github.javafaker.Faker;
-import io.restassured.RestAssured;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.web.server.LocalServerPort;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class UserTest {
-
-    @LocalServerPort
-    int randomServerPort;
-
-    private ValidatableResponse response;
-    private RequestSpecification reqSpec;
-
-    @BeforeEach
-    public void setup(){
-        RestAssured.baseURI = "http://localhost";
-        RequestSpecBuilder requestSpec = new RequestSpecBuilder();
-        requestSpec.setAccept(ContentType.JSON);
-        requestSpec.setContentType(ContentType.JSON);
-        requestSpec.setPort(randomServerPort);
-        reqSpec = requestSpec.build();
-    }
+public class UserTest extends BaseTest {
 
     @Test
     public void getAllUsersTest() {
