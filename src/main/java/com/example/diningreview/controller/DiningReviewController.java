@@ -51,7 +51,7 @@ public class DiningReviewController {
     @PutMapping("/dining-review/{id}/approve")
     public DiningReview approveReview(@PathVariable("id") Long id){
         Optional<DiningReview> reviewOptional = reviewRepository.findById(id);
-        if(!reviewOptional.isPresent()){
+        if(reviewOptional.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This review does not exist");
         }
         DiningReview reviewToApprove = reviewOptional.get();
@@ -62,7 +62,7 @@ public class DiningReviewController {
     @PutMapping("/dining-review/{id}/reject")
     public DiningReview rejectReview(@PathVariable("id") Long id){
         Optional<DiningReview> reviewOptional = reviewRepository.findById(id);
-        if(!reviewOptional.isPresent()){
+        if(reviewOptional.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This review does not exist");
         }
         DiningReview reviewToReject = reviewOptional.get();

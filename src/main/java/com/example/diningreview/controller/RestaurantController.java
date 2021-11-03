@@ -23,7 +23,7 @@ public class RestaurantController {
     @GetMapping("/restaurants/{id}")
     public Optional<Restaurant> getRestaurantBy(@PathVariable("id") Long id) {
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
-        if (!restaurantOptional.isPresent()) {
+        if (restaurantOptional.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This restaurant does not exist");
         }
         return restaurantRepository.findById(id);

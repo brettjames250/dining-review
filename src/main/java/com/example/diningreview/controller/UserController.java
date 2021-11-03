@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping("/users/{userName}")
     public Optional<User> getUserByUsername(@PathVariable("userName") String userName) {
         Optional<User> userOptional = userRepository.findByUserName(userName);
-        if(!userOptional.isPresent()){
+        if(userOptional.isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "This user does not exist");
         }
         return userRepository.findByUserName(userName);
