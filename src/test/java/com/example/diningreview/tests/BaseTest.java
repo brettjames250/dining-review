@@ -21,10 +21,12 @@ public class BaseTest {
     @BeforeEach
     public void setup(){
         RestAssured.baseURI = "http://localhost";
-        RequestSpecBuilder requestSpec = new RequestSpecBuilder();
-        requestSpec.setAccept(ContentType.JSON);
-        requestSpec.setContentType(ContentType.JSON);
-        requestSpec.setPort(randomServerPort);
-        reqSpec = requestSpec.build();
+        RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
+        requestSpecBuilder.setAccept(ContentType.JSON);
+        requestSpecBuilder.setContentType(ContentType.JSON);
+        requestSpecBuilder.setPort(randomServerPort);
+        reqSpec = requestSpecBuilder.build();
+        reqSpec.log().all();
+
     }
 }

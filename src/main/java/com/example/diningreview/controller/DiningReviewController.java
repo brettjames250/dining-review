@@ -4,6 +4,7 @@ import com.example.diningreview.model.AdminReviewStatus;
 import com.example.diningreview.model.DiningReview;
 import com.example.diningreview.repositories.RestaurantRepository;
 import com.example.diningreview.repositories.ReviewRepository;
+import com.example.diningreview.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -17,15 +18,29 @@ public class DiningReviewController {
     private ReviewRepository reviewRepository;
     @Autowired
     private RestaurantRepository restaurantRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/dining-review")
     public DiningReview createNewDiningreview(@RequestBody DiningReview diningReview){
+        if(restaurantRepository.findById(diningReview.getRestaurantId()).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This restaurant does not exist");
+        }
+        if(userRepository.findByUserName(diningReview.getReviewedBy()).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "This user does not exist");
+        }
         return reviewRepository.save(diningReview);
     }
 
     @GetMapping("/dining-review")
     public Iterable<DiningReview> getAllDiningReviews(){
         return reviewRepository.findAll();
+
+    }
+
+    @GetMapping("/dining-review/pending")
+    public Iterable<DiningReview> getPendingReviews(){
+        return reviewRepository.findByAdminReviewStatus(AdminReviewStatus.PENDING);
     }
 
     @GetMapping("/dining-review/accepted/{id}")

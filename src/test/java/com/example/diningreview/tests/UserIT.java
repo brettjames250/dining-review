@@ -9,7 +9,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class UserTest extends BaseTest {
+public class UserIT extends BaseTest {
 
     @Test
     public void getAllUsersTest() {

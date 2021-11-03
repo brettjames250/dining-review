@@ -9,7 +9,7 @@ import java.util.Map;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class RestaurantTest extends BaseTest {
+public class RestaurantIT extends BaseTest {
 
     @Test
     public void getAllRestaurantsTest() {
@@ -36,5 +36,6 @@ public class RestaurantTest extends BaseTest {
                 .when().log().all()
                 .post("/restaurants")
                 .then().log().all().assertThat().statusCode(200);
+
     }
 }

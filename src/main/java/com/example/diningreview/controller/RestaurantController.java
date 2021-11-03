@@ -29,12 +29,6 @@ public class RestaurantController {
         return restaurantRepository.findById(id);
     }
 
-    //TODO
-//    @GetMapping("/restaurants/{idd}")
-//    public Optional<Restaurant> getRestaurantByPostcodeAndAtLeastOneReview(@RequestParam String postc) {
-//        return null;
-//    }
-
     @PostMapping("/restaurants")
     public Restaurant createNewRestaurant(@RequestBody Restaurant restaurant) {
         if (restaurantRepository.existsByPostcode(restaurant.getPostcode()) && restaurantRepository.existsByName(restaurant.getName())) {
