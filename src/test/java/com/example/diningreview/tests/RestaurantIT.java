@@ -25,6 +25,12 @@ public class RestaurantIT extends BaseTest {
     }
 
     @Test
+    public void getRestaurantsByPostcode() {
+        response = given(reqSpec).queryParam("postcode", "BS1").when().log().all().get( "/restaurants/search")
+                .then().log().all().statusCode(200);
+    }
+
+    @Test
     public void addNewRestaurantTest(){
         Faker faker = new Faker();
         Map<String, Object> map = new HashMap<>();

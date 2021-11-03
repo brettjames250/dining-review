@@ -20,6 +20,11 @@ public class RestaurantController {
         return restaurantRepository.findAll();
     }
 
+    @GetMapping("/restaurants/search")
+    public Optional<Restaurant> getRestaurantsByPostcode(@RequestParam String postcode) {
+        return restaurantRepository.findByPostcode(postcode);
+    }
+
     @GetMapping("/restaurants/{id}")
     public Optional<Restaurant> getRestaurantBy(@PathVariable("id") Long id) {
         Optional<Restaurant> restaurantOptional = restaurantRepository.findById(id);
