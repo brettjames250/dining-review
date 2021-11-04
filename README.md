@@ -1,5 +1,6 @@
 # Dining Review API
 
+## Quick endpoint testing
 curl http://localhost:3001/users
 
 curl http://localhost:3001/restaurants
@@ -7,7 +8,18 @@ curl http://localhost:3001/restaurants
 curl http://localhost:3001/dining-review
 
 See further integrations tests under src/test/java/com/example/diningreview/tests
+## H2 Database
+This project has a H2 database implemented for unit/integration testing. It can be configured in two different ways:
 
+- In memory
+```
+spring.datasource.url = jdbc:h2:mem:testdb
+spring.jpa.defer-datasource-initialization = true
+```
+- Persist (stored in a file)
+```
+spring.datasource.url = jdbc:h2:file:./data
+```
 ## Integration testing
 
 Integration tests are run by using the maven-failsafe-plugin (below).
